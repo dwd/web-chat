@@ -5,6 +5,7 @@ import find from 'lodash/find';
 import FontAwesome from 'react-fontawesome';
 import ReactTooltip from 'react-tooltip';
 import RoomListEntry from './RoomListEntry';
+import UserListEntry from './UserListEntry';
 
 import { joinRoom } from '../../ducks/rooms';
 
@@ -101,6 +102,30 @@ class RoomList extends React.Component {
                 </div>
             )}
 
+            <h3>People</h3>
+            <Link to='/' className="joinRoom iconButton"
+                data-tip
+                data-for="userTip">
+                <FontAwesome name='plus-circle' />
+            </Link>
+            <ReactTooltip id='userTip' place="top" effect='solid' delayShow={100} offset={{left:2}}>
+                <span>Add a Contact</span>
+            </ReactTooltip>
+            
+            { this.props.roster && this.props.roster.length ? (
+                <ul>
+                    {
+                        this.props.roster.map(item => (
+                            <UserListEntry key={item.jid.bare} roomJid={item.jid.bare} roomLocal={item.name ? item.name : item.jid.bare} />
+                        ))
+                    }
+                </ul>
+            ) : (
+                <div>
+                    <p className="noRooms">You have nobody in your roster!</p>
+                </div>
+            )}
+
         </div>
         );
     }
@@ -111,7 +136,8 @@ const mapStateToProps = (state, props) => ({
   bookmarks: state.bookmarks,
   client: state.client,
   rooms: state.rooms,
-  recentRooms: state.local.recent
+  recentRooms: state.local.recent,
+  roster: state.roster
 });
 
 const mapDispatchToProps = (dispatch, props) => {

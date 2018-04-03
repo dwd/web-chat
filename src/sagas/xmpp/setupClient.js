@@ -10,10 +10,6 @@ function setupClient() {
   window.client = client;
   configureClient(client);
 
-  client.on("session:started", () => {
-    client.sendPresence();
-  });
-
   // client.on("raw:incoming", console.log);
   // client.on("raw:outgoing", console.log);
 

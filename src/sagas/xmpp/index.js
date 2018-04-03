@@ -12,6 +12,7 @@ import messages from './messages';
 import presence from './presence';
 import settings from './settings';
 import user from './user';
+import roster from './roster';
 
 function* runLoop(client) {
   let restarts = 0;
@@ -26,6 +27,7 @@ function* runLoop(client) {
             rooms(client),
             messages(client),
             presence(client),
+            roster(client),
             user(client),
             settings()
         ]);

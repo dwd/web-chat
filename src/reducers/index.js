@@ -9,6 +9,7 @@ import rooms from '../ducks/rooms';
 import messages from '../ducks/messages';
 import notification from '../ducks/notification';
 import presence from '../ducks/presence';
+import roster from '../ducks/roster';
 import settings from '../ducks/settings';
 import toast from '../ducks/toast';
 import user from '../ducks/user';
@@ -23,6 +24,7 @@ export default combineReducers({
   messages,
   notification,
   presence,
+  roster,
   settings,
   toast,
   user
